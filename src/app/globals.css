@@ -4,12 +4,45 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-white text-black font-sans;
+:root {
+  --background: white;
+  --foreground: black;
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --container-bg: #f0f0f0;
+  --error-color: red;
 }
 
-@media (prefers-color-scheme: dark) {
+[data-theme="dark"] {
+  --background: #121212;
+  --foreground: white;
+}
+
+.dark {
+  --background-color: #121212;
+  --text-color: #ffffff;
+  --container-bg: #1e1e1e;
+  --error-color: #ff6b6b;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/* Base styles */
+@layer base {
   body {
-    @apply bg-gray-900 text-white;
+    @apply transition-colors duration-200;
   }
+}
+
+/* Dark mode styles */
+.dark body {
+  @apply bg-gray-900 text-white;
+}
+
+/* Light mode styles */
+body {
+  @apply bg-white text-gray-900;
 }
